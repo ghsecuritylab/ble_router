@@ -147,10 +147,11 @@ hal_err_t hal_rtc_init(void) {
   rtc_memory_init();
   utc = rtc_read_memory();
   DBG_I("--------Hal RTC read %d(0x%x)------\r\n",utc,utc);
-  if(utc > 0)
+  if(utc < 1567296000)
   {
-    hal_rtc_set_time(utc);
+    utc = 1567296000;
   }
+  hal_rtc_set_time(utc);
   return HAL_ERR_OK;
 }
 
